@@ -16,7 +16,7 @@ namespace April.GRPOC
 {
     class Program
     {
-        static bool downloadComplite;
+        static bool downloadComplite, unzipComplite, convertComplite;
 
         static string fileName = $"lp{DateTime.Now.ToString("yyyy-MM-dd")}-1";
         static string dirDownload = @"C:\AprilDownload";
@@ -26,15 +26,32 @@ namespace April.GRPOC
 
         static Uri url = new Uri(@"http://www.grls.rosminzdrav.ru/GetLimPrice.aspx?FileGUID=50ae5bc4-ad8f-47c0-9462-e2780378bb8d&UserReq=6226967");
 
+        static long progressByte;
+        static long totalByte;
+        static string downloadStatus
+        {
+            get
+            {
+                return $"DownLoad {progressByte}/{totalByte}";
+            }
+        }
+
+
         static void Main(string[] args)
         {
 
             DownloadFile();
 
-            while (!downloadComplite)
+            while (!downloadComplite && !unzipComplite && !convertComplite)
             {
+                if (!downloadComplite)
+                {
+                    Console.Write($"\r{downloadStatus} ");
+                }
+
                 Thread.Sleep(1000);
             }
+
 
             Console.ReadKey();
         }
@@ -46,7 +63,7 @@ namespace April.GRPOC
                 File.Delete(uploadFile);
             }
 
-            Console.WriteLine($"Try download from {url}.");
+            Console.WriteLine($"Try download from url: {url}.");
 
             var client = new WebClient();
             client.DownloadProgressChanged += Client_DownloadProgressChanged;
@@ -68,7 +85,8 @@ namespace April.GRPOC
 
         private static void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-           
+            progressByte = e.BytesReceived;
+            totalByte = e.TotalBytesToReceive;
         }
 
         private static bool UnZipFile()
@@ -92,6 +110,8 @@ namespace April.GRPOC
             {
                 Console.WriteLine($"Unzip error: {ex.Message}");
             }
+
+            unzipComplite = true;
             return result;
         }
 
@@ -115,6 +135,8 @@ namespace April.GRPOC
             {
                 Console.WriteLine($"Load to DataTable error: {ex.Message}");
             }
+
+            convertComplite = true;
         }
     }
 }
