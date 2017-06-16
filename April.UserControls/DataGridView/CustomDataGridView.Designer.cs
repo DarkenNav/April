@@ -41,6 +41,9 @@
             this.dataGridView1.Size = new System.Drawing.Size(464, 291);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.VirtualMode = true;
+            this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
+            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
+            this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
             // 
             // CustomDataGridView
             // 

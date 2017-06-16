@@ -15,6 +15,23 @@ namespace April.UI
         public FormMain()
         {
             InitializeComponent();
+
+            InitializeDataGridView();
+        }
+
+        private void InitializeDataGridView()
+        {
+            #region Test data init
+            var dataTable = new DataTable();
+            dataTable.Columns.Add("Name");
+            dataTable.Columns.Add("Phone");
+
+            dataTable.Rows.Add("Ivan", "123");
+            dataTable.Rows.Add("Petr", "1222");
+
+            customDataGridView1.Data = dataTable;
+
+            #endregion
         }
     }
 }
