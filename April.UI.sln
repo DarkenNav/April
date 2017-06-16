@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "April.UI", "April.UI\April.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "April.UserControls", "April.UserControls\April.UserControls.csproj", "{7BB2F007-3168-4CE5-9DF9-F502FDB1B269}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "April.GRPOC", "April.GRPOC\April.GRPOC.csproj", "{127AAF18-954F-442C-86C6-211493F00D05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7BB2F007-3168-4CE5-9DF9-F502FDB1B269}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BB2F007-3168-4CE5-9DF9-F502FDB1B269}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BB2F007-3168-4CE5-9DF9-F502FDB1B269}.Release|Any CPU.Build.0 = Release|Any CPU
+		{127AAF18-954F-442C-86C6-211493F00D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{127AAF18-954F-442C-86C6-211493F00D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{127AAF18-954F-442C-86C6-211493F00D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{127AAF18-954F-442C-86C6-211493F00D05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,9 +12,25 @@ namespace April.UserControls.DataGridView
 {
     public partial class CustomDataGridView : UserControl
     {
+        private DataTable data;
+        public DataTable Data
+        {
+            get
+            {
+                return data;
+            }
+            set
+            {
+                data = value;
+                dataGridView1.DataSource = data;
+            }
+        }
+
+
         public CustomDataGridView()
         {
             InitializeComponent();
         }
+
     }
 }
