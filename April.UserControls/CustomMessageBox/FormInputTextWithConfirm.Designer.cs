@@ -1,4 +1,4 @@
-﻿namespace April.UserControls.MessageBox
+﻿namespace April.UserControls.CustomMessageBox
 {
     partial class FormInputTextWithConfirm
     {

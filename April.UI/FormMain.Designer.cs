@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.customDataGridView1 = new April.UserControls.DataGridView.CustomDataGridView();
+            this.customDataGridView1 = new April.UserControls.CustomDataGrid.CustomDataGridView();
             this.comboBoxUserActive = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
@@ -63,7 +63,7 @@
 
         #endregion
 
-        private UserControls.DataGridView.CustomDataGridView customDataGridView1;
+        private UserControls.CustomDataGrid.CustomDataGridView customDataGridView1;
         private System.Windows.Forms.ComboBox comboBoxUserActive;
     }
 }

@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using April.UserControls.MessageBox;
+using April.UserControls.CustomContextMenu;
+using April.UserControls.CustomMessageBox;
 
-namespace April.UserControls.DataGridView
+namespace April.UserControls.CustomDataGrid
 {
     public partial class CustomDataGridView : UserControl
     {
@@ -30,6 +31,7 @@ namespace April.UserControls.DataGridView
         private bool waitFilterKeyPress;
         private int filtredColumnsIndex;
         private FormInputTextWithConfirm dialogForm;
+        private CustomDataGridContextMenu contextMenu;
 
         public CustomDataGridView()
         {
@@ -38,11 +40,28 @@ namespace April.UserControls.DataGridView
             dialogForm = new FormInputTextWithConfirm();
             dialogForm.Text = "Введите данные";
 
+            contextMenu = new CustomDataGridContextMenu(dataGridView1);
+
         }
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            SetSelectFilterColumn(e.ColumnIndex);
+            switch (e.Button)
+            {
+                case MouseButtons.Left:
+                    SetSelectFilterColumn(e.ColumnIndex);
+                    break;
+                case MouseButtons.Right:
+                    ShowContextMenu(e);
+                    break;
+            }
+        }
+
+        private void ShowContextMenu(DataGridViewCellMouseEventArgs e)
+        {
+            contextMenu.CreateItems(e.ColumnIndex);
+            contextMenu.Show();
+
         }
 
         private void SetSelectFilterColumn(int index = -1)

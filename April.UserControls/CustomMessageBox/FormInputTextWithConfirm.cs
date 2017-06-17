@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace April.UserControls.MessageBox
+namespace April.UserControls.CustomMessageBox
 {
     public partial class FormInputTextWithConfirm : Form
     {

@@ -63,7 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\" />
+    <Folder Include="Repositories\Base\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
