@@ -13,17 +13,17 @@ namespace April.UserControls.DataGridView
 {
     public partial class CustomDataGridView : UserControl
     {
-        private DataTable data;
+        private DataTable dataTable;
         public DataTable Data
         {
             get
             {
-                return data;
+                return dataTable;
             }
             set
             {
-                data = value;
-                dataGridView1.DataSource = data;
+                dataTable = value;
+                dataGridView1.DataSource = dataTable;
             }
         }
 
@@ -37,7 +37,6 @@ namespace April.UserControls.DataGridView
 
             dialogForm = new FormInputTextWithConfirm();
             dialogForm.Text = "Введите данные";
-
 
         }
 
@@ -91,10 +90,11 @@ namespace April.UserControls.DataGridView
         {
             if (waitFilterKeyPress)
             {
-                dialogForm.InputText = e.KeyChar.ToString();
+                dialogForm.FilterText = e.KeyChar.ToString();
                 if (dialogForm.ShowDialog() == DialogResult.OK)
                 {
-                    //data.
+                    var filterField = dataGridView1.Columns[filtredColumnsIndex].Name;
+                    dataTable.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", filterField, dialogForm.FilterText);
                 }
 
                 SetSelectFilterColumn();

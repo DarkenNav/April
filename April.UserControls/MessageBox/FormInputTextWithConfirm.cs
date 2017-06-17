@@ -12,7 +12,7 @@ namespace April.UserControls.MessageBox
 {
     public partial class FormInputTextWithConfirm : Form
     {
-        public string InputText
+        public string FilterText
         {
             get
             {
