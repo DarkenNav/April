@@ -1,4 +1,5 @@
-﻿using System;
+﻿using April.UserControls.CustomDataGrid;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,9 @@ namespace April.UserControls.CustomContextMenu
         : ContextMenu
     {
         DataGridView dataGridView;
+
+        public delegate void VisibleChangeEventHandler(CustomDataGridViewTextBoxColumn column);
+        public event VisibleChangeEventHandler VisibleChangeEvent;
 
         public CustomDataGridContextMenu(DataGridView dataGridView)
         {
@@ -35,17 +39,18 @@ namespace April.UserControls.CustomContextMenu
                         $"Показать {col.Name}",
                         (sender, e) => ChangeVisibleColumn(col.Index)
                     ));
-
                 }
             }
-
         }
 
         private void ChangeVisibleColumn(int index)
         {
             try
             {
-                dataGridView.Columns[index].Visible = !dataGridView.Columns[index].Visible;
+                var column = (CustomDataGridViewTextBoxColumn)dataGridView.Columns[index];
+                column.Visible = !column.Visible;
+
+                VisibleChangeEvent?.Invoke(column);
             }
             catch (Exception ex)
             {

@@ -1,8 +1,10 @@
 ﻿using April.DataAccess.Context;
+using April.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -42,23 +44,63 @@ namespace April.UI
                     );
             }
 
-            customDataGridView1.Data = dataTable;
-
+            customDataGridView1.DataSource = dataTable;
             #endregion
 
             try
             {
                 var users = context.User.ToList();
-
                 comboBoxUserActive.DataSource = users;
                 comboBoxUserActive.DisplayMember = "Name";
-                comboBoxUserActive.ValueMember = "ID";
+
             }
             catch (Exception ex)
             {
                 // TODO: error connection
-            } 
+            }
 
+            customDataGridView1.ColumnChangeSettingsEvent += CustomDataGridView1_ColumnChangeSettingsEvent;
+        }
+
+        private void SetDataGridColumnCastomization(User user)
+        {
+            var castomPropertyList = context.DataGridColumnCastomization.Where(dg => dg.User.ID.Equals(user.ID)).ToList();
+            if (castomPropertyList != null)
+            {
+                customDataGridView1.SetCastomColumnsProperty(castomPropertyList);
+            }
+        }
+
+        private void CustomDataGridView1_ColumnChangeSettingsEvent(DataGridColumnCastomization settings)
+        {
+            var castomProperty = context.DataGridColumnCastomization.FirstOrDefault(dg => dg.ID.Equals(settings.ID));
+            if (castomProperty != null)
+            {
+                castomProperty.Width = settings.Width;
+                castomProperty.Visible = settings.Visible;
+
+                context.Entry(castomProperty).State = EntityState.Modified;
+            }
+            else
+            {
+                var user = (User)comboBoxUserActive.SelectedValue;
+                settings.UserId = user.ID;
+                context.DataGridColumnCastomization.Add(settings);
+            }
+            context.SaveChanges();
+        }
+
+        private void comboBoxUserActive_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                var user = (User)((ComboBox)sender).SelectedValue;
+                SetDataGridColumnCastomization(user);
+            }
+            catch (Exception ex)
+            {
+                // TODO: error connection
+            }
         }
     }
 }

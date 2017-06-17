@@ -26,5 +26,6 @@ namespace April.DataAccess.Context
         }
 
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<DataGridColumnCastomization> DataGridColumnCastomization { get; set; }
     }
 }

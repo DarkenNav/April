@@ -11,5 +11,7 @@ namespace April.Domain.Entity
         : EntityBase
     {
         public string Name { get; set; }
+
+        public ICollection<DataGridColumnCastomization> DataGridCastomizations { get; set; }
     }
 }

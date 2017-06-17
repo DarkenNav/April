@@ -34,7 +34,7 @@
             // 
             // customDataGridView1
             // 
-            this.customDataGridView1.Data = null;
+            this.customDataGridView1.DataSource = null;
             this.customDataGridView1.Location = new System.Drawing.Point(12, 42);
             this.customDataGridView1.Name = "customDataGridView1";
             this.customDataGridView1.Size = new System.Drawing.Size(835, 487);
@@ -47,6 +47,7 @@
             this.comboBoxUserActive.Name = "comboBoxUserActive";
             this.comboBoxUserActive.Size = new System.Drawing.Size(231, 21);
             this.comboBoxUserActive.TabIndex = 1;
+            this.comboBoxUserActive.SelectedIndexChanged += new System.EventHandler(this.comboBoxUserActive_SelectedIndexChanged);
             // 
             // FormMain
             // 

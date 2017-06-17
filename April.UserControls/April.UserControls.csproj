@@ -52,6 +52,7 @@
     <Compile Include="CustomDataGrid\CustomDataGridView.Designer.cs">
       <DependentUpon>CustomDataGridView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomDataGrid\CustomDataGridViewTextBoxColumn.cs" />
     <Compile Include="CustomMessageBox\FormInputTextWithConfirm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +68,12 @@
     <EmbeddedResource Include="CustomMessageBox\FormInputTextWithConfirm.resx">
       <DependentUpon>FormInputTextWithConfirm.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\April.Domain\April.Domain.csproj">
+      <Project>{ED0885B1-2DA7-4D8D-BAC0-14EF1B7F905A}</Project>
+      <Name>April.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

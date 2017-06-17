@@ -11,6 +11,7 @@ namespace April.DataAccess.Initializer
 {
     public class AprilDbContextInitializer
         : DropCreateDatabaseAlways<AprilDbContext>
+       // : CreateDatabaseIfNotExists<AprilDbContext>
     {
         Random rand;
         AprilDbContext context;

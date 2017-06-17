@@ -9,22 +9,36 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using April.UserControls.CustomContextMenu;
 using April.UserControls.CustomMessageBox;
+using April.Domain.Entity;
 
 namespace April.UserControls.CustomDataGrid
 {
     public partial class CustomDataGridView : UserControl
     {
-        private DataTable dataTable;
-        public DataTable Data
+        public delegate void ColumnChangeSettingsEventHandler(DataGridColumnCastomization settings);
+        public event ColumnChangeSettingsEventHandler ColumnChangeSettingsEvent;
+
+        public DataTable DataSource
         {
             get
             {
-                return dataTable;
+                return (DataTable)dataGridView1.DataSource;
             }
             set
             {
-                dataTable = value;
+                var dataTable = value;
                 dataGridView1.DataSource = dataTable;
+                if (dataTable != null)
+                {
+                    foreach (DataColumn col in dataTable.Columns)
+                    {
+                        var newColumn = new CustomDataGridViewTextBoxColumn();
+                        newColumn.Name = col.ColumnName;
+                        newColumn.DataPropertyName = col.ColumnName;
+                        dataGridView1.Columns.Add(newColumn);
+                    }
+                }
+
             }
         }
 
@@ -41,7 +55,55 @@ namespace April.UserControls.CustomDataGrid
             dialogForm.Text = "Введите данные";
 
             contextMenu = new CustomDataGridContextMenu(dataGridView1);
+            contextMenu.VisibleChangeEvent += ContextMenu_VisibleChangeEvent;
 
+            dataGridView1.AutoGenerateColumns = false;
+            dataGridView1.ColumnWidthChanged += DataGridView1_ColumnWidthChanged;
+        }
+
+        private void ContextMenu_VisibleChangeEvent(CustomDataGridViewTextBoxColumn column)
+        {
+            ColumnChangeSettings(column);
+        }
+
+        private void DataGridView1_ColumnWidthChanged(object sender, DataGridViewColumnEventArgs e)
+        {
+            ColumnChangeSettings((CustomDataGridViewTextBoxColumn)e.Column);
+        }
+
+        private void ColumnChangeSettings(CustomDataGridViewTextBoxColumn column)
+        {
+            if (BlockSaveSetting) return;
+
+            var setting = new DataGridColumnCastomization
+            {
+                ID = (column.UserSettingID != Guid.Empty) ? column.UserSettingID : Guid.NewGuid(),
+                Name = column.Name,
+                Width = column.Width,
+                Visible = column.Visible
+            };
+            ColumnChangeSettingsEvent?.Invoke(setting);
+        }
+
+        private bool BlockSaveSetting;
+        public void SetCastomColumnsProperty(List<DataGridColumnCastomization> settings)
+        {
+            BlockSaveSetting = true;
+            foreach (CustomDataGridViewTextBoxColumn column in dataGridView1.Columns)
+            {
+                var set = settings.FirstOrDefault(s => s.Name.Equals(column.DataPropertyName));
+                if (set != null)
+                {
+                    column.UserSettingID = set.ID;
+                    column.Width = set.Width;
+                    column.Visible = set.Visible;
+                }
+                else
+                {
+                    column.DefaultSeting();
+                }
+            }
+            BlockSaveSetting = false;
         }
 
         private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -89,20 +151,23 @@ namespace April.UserControls.CustomDataGrid
 
         private void dataGridView1_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
-            e.Column.SortMode = DataGridViewColumnSortMode.Programmatic;
+            var column = (CustomDataGridViewTextBoxColumn)e.Column;
+
+            column.SortMode = DataGridViewColumnSortMode.Programmatic;
 
             DataGridViewCellStyle style = new DataGridViewCellStyle();
             style.Font = new Font(this.Font, FontStyle.Regular);
 
-            e.Column.HeaderCell.Style = style;
+            column.HeaderCell.Style = style;
+
+            column.DefaultWidth = column.Width;
+
         }
 
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             DataGridViewTextBoxEditingControl dataGridViewControl = (DataGridViewTextBoxEditingControl)e.Control;
             dataGridViewControl.KeyPress += DataGridViewControl_KeyPress;
-
-            //e.Control.KeyPress += new KeyPressEventHandler(dataGridViewTextBox_KeyPress);
         }
 
         private void DataGridViewControl_KeyPress(object sender, KeyPressEventArgs e)
@@ -113,7 +178,7 @@ namespace April.UserControls.CustomDataGrid
                 if (dialogForm.ShowDialog() == DialogResult.OK)
                 {
                     var filterField = dataGridView1.Columns[filtredColumnsIndex].Name;
-                    dataTable.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", filterField, dialogForm.FilterText);
+                    DataSource.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", filterField, dialogForm.FilterText);
                 }
 
                 SetSelectFilterColumn();
