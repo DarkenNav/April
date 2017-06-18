@@ -47,6 +47,7 @@
     <Compile Include="CustomContextMenu\CustomDataGridContextMenu.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CustomControls\ControlCollectionExtention.cs" />
     <Compile Include="CustomControls\CustomTextBox.cs">
       <SubType>Component</SubType>
     </Compile>

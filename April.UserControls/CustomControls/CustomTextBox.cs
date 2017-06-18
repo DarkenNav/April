@@ -14,13 +14,14 @@ namespace April.UserControls.CustomControls
 
         public string EmptyDataText { get; set; }
 
-        public bool Check()
+        public bool Check(bool showMessage = true)
         {
             if (!EmptyDataCheck) return true;
             if (this.Text != null && this.Text != string.Empty) return true;
 
-            MessageBox.Show(EmptyDataText);
+            if(showMessage) MessageBox.Show(EmptyDataText);
             return false;
         }
+
     }
 }

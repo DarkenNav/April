@@ -22,6 +22,6 @@ namespace April.UserControls.Base
         /// Проверять на наличие данных в компоненте
         /// </summary>
         /// <returns></returns>
-        bool Check();
+        bool Check(bool showMessage = true);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using April.DataAccess.Context;
 using April.Domain.Entity;
+using April.UserControls.CustomControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,9 @@ namespace April.UI
             InitializeComponent();
 
             InitializeDataGridView();
+
+            //var check = Controls.DataCheck(); 
+
         }
 
         private void InitializeDataGridView()
