@@ -1,4 +1,5 @@
-﻿using System;
+﻿using April.UI.Implimentations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,9 +15,12 @@ namespace April.UI
         [STAThread]
         static void Main()
         {
+            AppDomain.CurrentDomain.UnhandledException += ClientException.Process;
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
         }
+
     }
 }

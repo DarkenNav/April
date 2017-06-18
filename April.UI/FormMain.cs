@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -31,6 +32,16 @@ namespace April.UI
 
             //var screenCapture = new ScreenCapture();
             //screenCapture.Get().Save($@"C:\AprilDownload\{Guid.NewGuid().ToString()}.jpg");
+
+            try
+            {
+                throw new Exception("TryCatch: Test exception");
+            }
+            catch (Exception)
+            {
+            }
+            throw new Exception("No TryCatch: Test exception");
+
         }
 
         private void InitializeDataGridView()
@@ -115,5 +126,6 @@ namespace April.UI
         {
             customDataGridView1.SwitchVisibleColumn();
         }
+
     }
 }
