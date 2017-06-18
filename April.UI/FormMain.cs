@@ -1,5 +1,6 @@
 ﻿using April.DataAccess.Context;
 using April.Domain.Entity;
+using April.UI.Implimentations;
 using April.UserControls.CustomControls;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +29,8 @@ namespace April.UI
 
             //var check = Controls.DataCheck(); 
 
+            //var screenCapture = new ScreenCapture();
+            //screenCapture.Get().Save($@"C:\AprilDownload\{Guid.NewGuid().ToString()}.jpg");
         }
 
         private void InitializeDataGridView()
