@@ -43,7 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\ICheckableControl.cs" />
     <Compile Include="CustomContextMenu\CustomDataGridContextMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\CustomTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CustomDataGrid\CustomDataGridView.cs">
@@ -75,6 +79,7 @@
       <Name>April.Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
