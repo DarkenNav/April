@@ -30,6 +30,7 @@
         {
             this.customDataGridView1 = new April.UserControls.CustomDataGrid.CustomDataGridView();
             this.comboBoxUserActive = new System.Windows.Forms.ComboBox();
+            this.btnSwitchVisible = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // customDataGridView1
@@ -49,11 +50,22 @@
             this.comboBoxUserActive.TabIndex = 1;
             this.comboBoxUserActive.SelectedIndexChanged += new System.EventHandler(this.comboBoxUserActive_SelectedIndexChanged);
             // 
+            // btnSwitchVisible
+            // 
+            this.btnSwitchVisible.Location = new System.Drawing.Point(445, 10);
+            this.btnSwitchVisible.Name = "btnSwitchVisible";
+            this.btnSwitchVisible.Size = new System.Drawing.Size(138, 23);
+            this.btnSwitchVisible.TabIndex = 2;
+            this.btnSwitchVisible.Text = "Switch visible column";
+            this.btnSwitchVisible.UseVisualStyleBackColor = true;
+            this.btnSwitchVisible.Click += new System.EventHandler(this.btnSwitchVisible_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(859, 541);
+            this.Controls.Add(this.btnSwitchVisible);
             this.Controls.Add(this.comboBoxUserActive);
             this.Controls.Add(this.customDataGridView1);
             this.Name = "FormMain";
@@ -66,6 +78,7 @@
 
         private UserControls.CustomDataGrid.CustomDataGridView customDataGridView1;
         private System.Windows.Forms.ComboBox comboBoxUserActive;
+        private System.Windows.Forms.Button btnSwitchVisible;
     }
 }
 

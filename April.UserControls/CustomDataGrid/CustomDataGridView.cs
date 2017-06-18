@@ -185,5 +185,20 @@ namespace April.UserControls.CustomDataGrid
                 e.Handled = true;
             }
         }
+
+        public void SwitchVisibleColumn()
+        {
+            foreach (var column in dataGridView1.Columns)
+            {
+                if (column.GetType() == typeof(CustomDataGridViewTextBoxColumn))
+                {
+                    var col = (CustomDataGridViewTextBoxColumn)column;
+                    if (col.CanSwitch)
+                    {
+                        col.Visible = !col.Visible;
+                    }
+                }
+            }
+        }
     }
 }

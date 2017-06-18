@@ -102,5 +102,10 @@ namespace April.UI
                 // TODO: error connection
             }
         }
+
+        private void btnSwitchVisible_Click(object sender, EventArgs e)
+        {
+            customDataGridView1.SwitchVisibleColumn();
+        }
     }
 }

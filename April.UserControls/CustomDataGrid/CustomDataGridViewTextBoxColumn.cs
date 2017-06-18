@@ -15,6 +15,8 @@ namespace April.UserControls.CustomDataGrid
 
         public int DefaultWidth { get; set; }
 
+        public bool CanSwitch { get; set; } = true;
+
         public void DefaultSeting()
         {
             Width = DefaultWidth;
