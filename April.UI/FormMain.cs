@@ -33,14 +33,14 @@ namespace April.UI
             //var screenCapture = new ScreenCapture();
             //screenCapture.Get().Save($@"C:\AprilDownload\{Guid.NewGuid().ToString()}.jpg");
 
-            try
-            {
-                throw new Exception("TryCatch: Test exception");
-            }
-            catch (Exception)
-            {
-            }
-            throw new Exception("No TryCatch: Test exception");
+            //try
+            //{
+            //    throw new Exception("TryCatch: Test exception");
+            //}
+            //catch (Exception)
+            //{
+            //}
+            //throw new Exception("No TryCatch: Test exception");
 
         }
 

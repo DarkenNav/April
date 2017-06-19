@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\EmailParams.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +73,7 @@
     </Compile>
     <Compile Include="Implimentations\ClientException.cs" />
     <Compile Include="Implimentations\ScreenCapture.cs" />
+    <Compile Include="Implimentations\SendMail.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormMain.resx">
