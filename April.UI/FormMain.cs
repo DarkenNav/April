@@ -127,5 +127,11 @@ namespace April.UI
             customDataGridView1.SwitchVisibleColumn();
         }
 
+        private void btnTest_Click(object sender, EventArgs e)
+        {
+            var hint = new BalloonTip();
+            hint.Show("hi", "its work?", comboBoxUserActive, ToolTipIcon.Info, 2000);
+            
+        }
     }
 }
